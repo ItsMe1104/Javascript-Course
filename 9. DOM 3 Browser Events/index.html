@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM_Browser_Events</title>
+</head>
+<body>
+     Browser Events
+    <h1 class="heading">Handling Browser Events</h1>
+    <h2 class="changing_text">Hrithik Kumar Shaw</h2>
+    <h3 class="dispatch_event">Hello Jee KAise ho saare</h3>
+    <p id="wrapper">Hello Everyone, this is Hrithik</p>
+    <a href="https://www.youtube.com" target="_blank">This will work</a>
+    <a href="https://www.yahoo.com" target="_blank">This will work</a>
+    <a href="https://www.facebook.com" target="_blank">This will work</a>
+    <a href="https://www.google.com" target="_blank">This link will not open</a>
+
+
+    <article id="wrapper_article">
+        <p>This is Para 1 from article, <span>This is span 1</span></p>
+        <p>This is Para 2 article, <span>This is span 2</span></p>
+        <p>This is Para 3 article, <span>This is span 3</span></p>
+    </article>
+
+
+    <!-- To understand event bubbling and capturing -->
+    <div class="d-1">
+        <button class="btn-1">Like me</button>
+    </div>
+
+     <!-- To understand stopPropogation() -->
+    <div class="d-2">
+        <button class="btn-2">Click me</button>
+    </div>
+
+     <!-- To understand stopImmediatePropogation() -->
+    <div class="d-3">
+        <button class="btn-3">Hit me</button>
+    </div>
+
+    <h2 class="dispatching">Learning Dispatch Event by building custom events</h2>
+    
+    <script src="index.js"></script>    
+</body>
+</html>
