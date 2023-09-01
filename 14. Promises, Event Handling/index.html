@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises, Event Handling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="box" id="box-1" onclick="myFunction()" >box-1</div>
+        <div class="box" id="box-2" onmouseover="mouseOver()" >box-2</div>
+        <div class="box" id="box-3" onmousemove="mouseMove()">box-3</div>
+        <div class="box" id="box-4">box-4</div>
+        
+        <div class="container-5">
+            <div class="box" id="box-5">box-5</div>
+        </div>
+
+        <div class="container-6">
+            <div class="box" id="box-6">box-6</div>
+        </div>
+        
+    </div>
+
+
+    <form action="#">
+        <input type="text" id="nameInput1" onkeypress="keyPress()">
+        <input type="text" id="nameInput2" onkeydown="keyDown()">
+        <input type="text" id="nameInput3" onkeyup="keyUp()">
+        <input type="text" id="nameInput3" onkeyup="keyUp()"  onkeydown="keyDown()" onkeypress="keyPress()">
+    </form>
+
+    <!-- <script src="./index.js"></script> -->
+    <!-- <script src="./promisePizza.js"></script> -->
+    <!-- <script src="eventHandling.js"></script> -->
+    <script src="errorHandling.js"></script>
+</body>
+</html>
