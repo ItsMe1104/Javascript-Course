@@ -1,0 +1,336 @@
+FETCHING ELEMENT USING QUERYSELECTORUSING CUSTOM ATTRIBUTE 
+
+ <!-- data-passwordDisplay is a custom attribute below-->
+
+<input readonly placeholder="Password" class="display" data-passwordDisplay>
+
+//JS
+const inputSlider = document.querySelector("[data-lengthSlider]")
+
+
+
+************************************************************************************************************************************************************************************************************************************
+ <!-- MAKING A SLIDER USING HTML  -->
+ 
+ // uses an input tag with type = "range"
+ // use attribute min and max to set the minimum and maximum value of SLIDER
+ //use step attribute to tell how many steps the silder will increase normally from min to max
+
+
+
+
+
+ ************************************************************************************************************************************************************************************************************************************
+
+ The "for" attribute in label should always match to the id of its input
+
+
+
+
+ ****************************************************************************************************************************************************************************************************************************************
+
+ To set a particular value of slider(input tag) in html using js
+
+ //first select that element
+ // then apply .value
+
+ const inputSlider = document.querySelector("[data-lengthSlider]");
+ inputSlider.value = 10
+
+
+
+
+
+
+ *******************************************************************************************************************************************************************************************************************************************************
+MATH.RANDOM()  --> givens a random no. between max and min
+
+ MATH.RANDOM()  --> givens a random no. between 0 and 1 
+
+ 0   -->   1
+ (max-min) * 0  -->  (max-min) * 1
+ 0  -->  (max-min)     --> decimal or integer
+
+ Math.floor( 0  -->  (max-min) )  --> decimal or integer
+
+ Math.floor( min + 0 --> (max-min) + min )
+ Math.floor( min --> max )  
+
+
+ //Actual expression to get a random no. between min and max -->
+ Math.floor(Math.random() * (max - min)) + min
+
+ //or
+Math.floor(Math.random() * (max - min) + min);  
+
+
+
+
+
+
+
+*******************************************************************************************************************************************************************************************************************************************************
+GETTING CHARACTER FROM ASCII CODE
+
+//use String.fromCharCode(ASCII INTEGER);
+
+e.g --> let a = 66;  //B
+        String.fromCharCode(a);
+
+
+
+
+
+*******************************************************************************************************************************************************************************************************************************************************
+HOW TO KNOW IF THE INPUT CHECKBOX IN HTML IS CHECKED OR NOT USING JAVASCRIPT?
+
+//first target the checkbox input tag
+//use .checked property
+//returns a boolean
+
+numbersCheck.checked
+
+
+
+
+
+
+********************************************************************************************************************************************************************************************************************************************************************************
+HOW TO COPY TEXT TO CLIPBOARD IN JS
+
+--> await navigator.clipboard.writeText(passwordDisplay.value)  is a statement that uses the Clipboard API to write the generated password to the clipboard.
+
+--> The writeText() method of the Clipboard interface writes the provided text to the clipboard.
+It returns a Promise that resolves when the text has been successfully written to the clipboard.
+
+--> By using the "await" keyword before the navigator.clipboard.writeText(passwordDisplay.value) statement, the code waits until the Promise resolves before moving on to the next line of code. This ensures that the password is successfully written to the clipboard before any further actions are taken.
+
+--> hence use async function
+
+
+
+
+
+
+************************************************************************************************************************************************************************************************************************************************************************************************
+To make an element appear and disappear after some time using js
+
+ // first target that element
+ // to make the copy text span visible
+    
+    copyMsg.classList.add("active");
+    
+    //to make the copy text invisible after sometime
+    setTimeout(() => {
+        copyMsg.classList.remove("active");
+    }, 2000);
+
+
+
+
+
+
+
+*************************************************************************************************************************************************************************************************************************************************************************************************************
+HOW TO GET THE VALUE OF SLIDER
+
+//taget the slider
+//works at input event, matlab jo input denge wo wala evenet pe chalega
+
+
+inputSlider.addEventListener("input",(e)=>{
+    password = e.target.value;
+    handleSlider();
+})
+
+
+
+
+
+
+
+******************************************************************************************************************************************************************************************************************************************************************************
+//Copying from an input field only if it is not empty.
+
+//first target the input field from where we will copy
+
+copyBtn.addEventListener("click",()=>{
+    if(passwordDisplay.value)
+    {
+        copyContent();
+    }
+})
+
+
+//or we can use if password.length > 0 then only copy
+
+
+
+
+
+
+
+//***************************************************************************************************************************************************************************************************************************************************************************************
+//HOW TO CHECK IF AN INPUT TYPE CHECKBOX IS CHECKED OR NOT?
+
+//first fetch the checkbox, then use .checked property 
+//it returns a boolean
+
+checkbox.checked
+
+
+
+
+
+
+//*******************************************************************************************************************************************************************************************************************************************************************
+//HOW TO ADD AN EVENT LISTENER WHENEVER AN INPUT TYPE CHECKBOX IS TICKED OR UNTICKED?
+
+
+//allCheckBox gives an array-like object of all the checkboxes as it was given by querySelectorALL
+//hence we go to all checkboxes and put an event listener using for-each loop instead of fetching and applying on them one by one
+
+allCheckBox.forEach((checkbox)=>{
+
+    //Event --> any change (from tick to untick and from untick to tick)
+    checkbox.addEventListener("change",handleCheckBoxChange);
+});
+
+
+//whenever we find a change in checkboxes --> tick or untick, we count the no. of ticked checkboxes from the starting and update the count
+//instead we can use if-else to check if the change is ticked or unticked
+function handleCheckBoxChange() {
+    checkCount = 0;
+    allCheckBox.forEach((checkbox)=>{
+        if(checkbox.checked)
+            checkCount++;
+    }) 
+
+    //Corner Case:-
+    //that if we ticked four checkboxes but got the slider length to 1, still the password should comprise of 4 letters and the slidr should itself come to 4
+    // i.e if passwordLength got less than checkCount then update the passwordLength such that the slider updates automatically
+    
+    if(passwordLength < checkCount)
+    {
+      passwordLength = checkCount; 
+      handleSlider();  
+    }
+}
+
+
+
+
+
+
+//****************************************************************************************************************************************************************************************************************************************************************************************************************
+//RANDOMLY SELECTING LETTERS USING TICKED CHECKBOXES 
+
+let funcArr = [];
+    
+if(uppercaseCheck.checked)
+{
+    funcArr.push(generateUpperCase);
+}
+if(lowercaseCheck.checked)
+{
+    funcArr.push(generateLowerCase);
+}
+if(numbersCheck.checked)
+{
+    funcArr.push(generateRandomNumber);
+}
+if(symbolsCheck.checked)
+{
+    funcArr.push(generateSymbol);
+}
+
+
+
+//compulsary addition of letters according to ticked checkboxes       
+for (let i = 0; i < funcArr.length; i++) {
+
+    //Adding braces is necessary as we are just putting function names inside array and hence inorder to call them we must 
+
+    password += funcArr[i]();
+}
+
+
+//passwordLength is the length set by slider
+//remaining addition of letters according to ticked checkboxes
+for (let i = 0; i < passwordLength - funcArr.length; i++) {
+    let randIndex = getRndInteger(0,funcArr.length);
+    password += funcArr[randIndex]();
+}
+
+
+//At last shuffling all the letters in the password
+    password = shufflePassword();
+
+
+
+
+//SHUFFLING ARRAY ELEMENTS USING Fisher Yates Method
+//It takes array as an input
+function shufflePassword(array){
+
+    //travelling from back to front
+    for(let i = array.length - 1; i > 0 ; i--)
+    {   
+        //finding random index between current i from back and 0
+        const j = Math.floor(Math.random() * (i+1));
+       
+       
+        //swapping the ith index no. with random index no.(j)
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+
+    
+    //adding the elements of array in the string
+    let str = "";
+    array.forEach((el)=> str+=el);
+    return str;
+}
+
+
+
+
+
+//***********************************************************************************************************************************************************************************************************************************
+//BREAKING ALL THE CHARACTERS OF STRING INTO ELEMENTS OF ARRAY 
+
+//use Array.from(string_name);
+
+//e.g --> 
+let str = "Hrithik";
+
+let arr = Array.from(str);
+// arr --> ['H', 'r', 'i', 't', 'h', 'i', 'k'];
+
+
+
+
+
+//*****************************************************************************************************************************************************************************************************************************
+//COMPULSARY THING TO ALWAYS ADD IN CSS 
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+
+//********************************************************************************************************************************************************************************************************************************
+ //SEPARATING THE LEFT AND RIGHT SIDES OF THE SLIDER THUMB
+ 
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+
+    inputSlider.style.backgroundSize = ((passwordLength - min) *100 / (max-min)) + "% 100%"
+

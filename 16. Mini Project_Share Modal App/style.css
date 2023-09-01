@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #000;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  }
+  
+  .wrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+
+
+  /* making its position: fixed so that it doesnt come in between the layout of wrapper*/
+  .circle1 {
+    position: fixed;
+    top: 5%;
+    left: 30%;
+    width: 13em;
+    height: 13em;
+    border-radius: 50%;
+    box-shadow: 0 0 50px #d84869;
+    background: linear-gradient(-25deg, #d84869, #f46641);
+    animation: circle1Animate 15s infinite;
+  }
+  
+
+  @keyframes circle1Animate {
+    50% {
+      left: 33%;
+      top: 4%;
+      scale: 1.11;  /*means to grow bigger of 0.11 times when till it crosses 7.5 seconds*/
+    }
+  }
+
+
+   /* making its position: absolute so that it doesnt come in between the layout of wrapper and it positions itself according to the root element since none of its parent is relative*/
+   .circle2 {
+    position: absolute;
+    bottom: 5%;
+    right: 30%;
+    width: 19em;
+    height: 19em;
+    border-radius: 50%;
+    box-shadow: 0 0 50px #5648d8;
+    background: linear-gradient(-25deg, #5648d8, #8641f4);
+    animation: circle2Animate 8s infinite;
+  }
+  @keyframes circle2Animate {
+    50% {
+      bottom: 6%;
+      right: 31%;
+    }
+  }
+
+  .card-wrapper {
+    position: absolute;        /* so that it doesnt interfre with the wrapper*/
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 450px;
+    border: 2px solid #ffffff30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;     /*will look things vertically as flex-direction is set to column*/
+    background: #ffffff1a;
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    color: #ffffff;
+    padding: 20px 50px;
+  }
+
+  /*making the profile image to size properly*/
+  /*sizing the div as the image is enclosed within a div*/
+  .card-wrapper div img {
+    border: 2px solid #ffffff30;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .designation h3 {
+    text-align: center;
+    color: #ffffff85;
+  }
+  .user-name h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+
+  /*div containing the buttons*/
+  .bottom-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  /* the share button contains a logo from font awesome in an <i> tag + a div saying "share my profile" */
+  .btn-share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 12px;
+    background: #ffffff00;
+    border: 2px solid #ffffffb9;
+    text-transform: capitalize;    /* to make all the text with first letter of the word as capital*/
+    border-radius: 4px;
+    color: #ffffffb9;
+    cursor: pointer;   /*so that when we hover over it it shows a clicking option*/
+  }
+
+  .btn-follow {
+    text-transform: capitalize;
+    width: 150px;
+    padding: 9px 12px;
+    background: #ffffff00;
+    border: 2px solid #ffffffb9;
+    border-radius: 4px;
+    color: #ffffffb9;
+    cursor: pointer;
+    transition: all 0.5s;     /*slow transition on hover*/
+  }
+
+
+  .btn-card:hover {
+    background: #ffffffb9;
+    color: #131313;
+  }
+
+
+  .modal {
+    /* Way to totally center an element */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;                 /* The translate property allows you to change the position of elements */
+    
+    
+    border: 2px solid #ffffff59;
+    width: 500px;
+    scale: 0;    /*means making it of 0 size i.e invisible*/
+    background: #00000088;
+    backdrop-filter: blur(10px);   /*making it blur*/
+    color: white;
+    z-index: 1;     /*getting it above other elements*/
+    padding: 20px 25px;
+    border-radius: 20px;
+    transition: 0.5s ease-in-out;   /*that is any transition eeffect like scaling or anything will happen in transition*/
+  }
+
+  /*containing the header "Share my profile" and a cross icon*/
+  .modal-header {
+    display: flex;
+    margin-bottom: 25px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ffffff88;
+  }
+
+
+  /*cross icon*/
+  .modal-header div i {
+    font-size: 30px;
+  }
+
+  /*specifically the cross icon*/
+  .close {
+    cursor: pointer;
+  }
+
+  /*wrapper containing the hyperlinks - icons*/
+  .icon-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+
+  .icon {
+    border: 1px solid #ffffff88;
+    padding: 17px;
+    border-radius: 50%;   /*making icons as circle*/
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+    gap: 10px;
+    justify-content: center;
+    transition: all 0.5s;       /*means all hover effect will take slight time to show*/
+    margin-bottom: 25px;
+    text-decoration: none;      /*no underline after we click the icon*/
+  }
+
+   .icon i {
+    font-size: 27px;            /* actually the logo icons can be treated as font hence applying font properties to them */
+  }
+  
+
+  #facebook {
+    color: #1771e6;
+    border: 1px solid #1771e6;
+  }
+  #facebook:hover {
+    background-color: #1771e6;
+    color: #fff;
+  }
+  
+  #twitter {
+    color: #1c99e6;
+    border: 1px solid #1c99e6;
+  }
+  #twitter:hover {
+    background-color: #1c99e6;
+    color: #fff;
+  }
+  
+  #instagram {
+    color: #cb2770;
+    border: 1px solid #cb2770;
+  }
+  #instagram:hover {
+    background-color: #cb2770;
+    color: #fff;
+  }
+  
+  #whatsapp {
+    color: #2fe664;
+    border: 1px solid #2fe664;
+  }
+  #whatsapp:hover {
+    background-color: #2fe664;
+    color: #fff;
+  }
+  
+  #telegram {
+    color: #0081c2;
+    border: 1px solid #0081c2;
+  }
+  #telegram:hover {
+    background-color: #0081c2;
+    color: #fff;
+  }
+
+
+
+  /*use to suddenly make the share modal box appear when this class is added by openModal() function using javascript*/
+  /*making scale from 0 to 1 will make the share modal box appear a its original size from being negligible*/
+  .active {
+    scale: 1;
+  }
+
+
+
+  /* making it fixed and making its width and height the total screen by making top,left,right,bottom = 0*/
+  .overlay {
+    position: fixed;
+    background-color: #5f5f5f83;
+    
+    /*making it full screen*/
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    /*making its opacity = 0 means invisible*/
+    opacity: 0;
+
+    /*means no pointer events will happen*/
+    pointer-events: none;
+    transition: 0.5s ease-in-out;
+  }
+
+
+
+  /*use to suddenly make the overlay appear when this class is added by openModal() function using javascript*/
+  /*making opacity from 0 to 1 will make the overlay appear abit blurry*/
+    .overlayactive {
+    opacity: 1;
+    pointer-events: initial;   /*initial --> default value that is auto means the pointer events will start applying once the overlay is present*/
+  }
+
+
+
+
+  /* Adding media queries */
+
+  /*when screen is less than 850px that is for tabs*/
+  @media (max-width: 850px) {
+    .card-wrapper {
+      max-width: 250px;     /*that is while reducing screen size isse chota toh nahi hi hona hai*/
+      width: 300px;
+    }
+
+
+    /* the buttons share and follow come vertical */
+    .bottom-group {
+      flex-direction: column;
+    }
+
+
+    /*making the modal size bigger*/
+    .modal {
+      width: 70vw;
+    }
+  }
+
+
+
+ /*when screen is less than 400px that is for mobiles*/
+  @media (max-width: 400px) {
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-wrapper {
+      position: static;   /*as we already set the card wrapper to com in middle by making the wrapper as flexbox*/
+      
+      
+      /*wont work as the position is static*/
+      /* top: 0;
+      left: 0; */
+      translate: 0 0;
+      margin: 0 12px;
+      padding: 0 10px;
+    }
+
+    .card-wrapper div img {
+      width: 120px;
+      height: 120px;
+    }
+    .user-name h2 {
+      font-size: 1.3rem;
+    }
+
+    /*making the modal size more bigger so that the icons can wrap freely*/
+    .modal {
+      width: 80vw;
+    }
+  }
